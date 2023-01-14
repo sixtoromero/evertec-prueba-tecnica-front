@@ -12,10 +12,13 @@ import {ContextMenuModule} from 'primeng/contextmenu';
 import {DialogModule} from 'primeng/dialog';
 import {ButtonModule} from 'primeng/button';
 import {DropdownModule} from 'primeng/dropdown';
+
 import {ProgressBarModule} from 'primeng/progressbar';
 import {InputTextModule} from 'primeng/inputtext';
 import {InputMaskModule} from 'primeng/inputmask';
-
+import {MenubarModule} from 'primeng/menubar';
+import {FileUploadModule} from 'primeng/fileupload';
+import {SelectButtonModule} from 'primeng/selectbutton';
 
 @NgModule({
     declarations: [
@@ -36,7 +39,10 @@ import {InputMaskModule} from 'primeng/inputmask';
 		ButtonModule,
 		ToastModule,
         InputTextModule,
-        InputMaskModule
+        InputMaskModule,
+        MenubarModule,
+        FileUploadModule,
+        SelectButtonModule
     ],
     exports: [        
         RouterModule,        
@@ -50,7 +56,10 @@ import {InputMaskModule} from 'primeng/inputmask';
 		ButtonModule,
 		ToastModule,
         InputTextModule,
-        InputMaskModule
+        InputMaskModule,
+        MenubarModule,
+        FileUploadModule,
+        SelectButtonModule
     ],
     providers:[]
 })

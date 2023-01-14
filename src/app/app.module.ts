@@ -15,7 +15,11 @@ import { DetalleComponent } from './info-personal/detalle/detalle.component';
 import { FooterComponent } from './shared/footer/footer.component';
 import { NavbarComponent } from './shared/navbar/navbar.component';
 import { SidebarComponent } from './shared/sidebar/sidebar.component';
-
+import { NgxUiLoaderModule } from 'ngx-ui-loader';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
+//import { MessageService } from 'primeng/api';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+//import {ToastModule} from 'primeng/toast';
 
 @NgModule({
   declarations: [
@@ -34,7 +38,11 @@ import { SidebarComponent } from './shared/sidebar/sidebar.component';
     BrowserModule,
     AppRoutingModule,
     SharedModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    NgxUiLoaderModule,
+    HttpClientModule,
+    //ToastModule,
+    BrowserAnimationsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

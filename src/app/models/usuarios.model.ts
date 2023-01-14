@@ -5,7 +5,7 @@ export class UsuariosModel implements Deserializable  {
     public Nombres!: string;
     public Apellidos!: string;
     public Correo!: string;
-    public Usuario!: string;
+    //public Usuario!: string;
     public Contrasena!: string;
 
     deserialize(input: any) {

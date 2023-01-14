@@ -4,75 +4,68 @@
     <div class="col-lg-4 mx-auto">
         <h2 class="text-center mb-4">Registro</h2>
         <div class="auto-form-wrapper">
-        <form [formGroup]="registroForm" (ngSubmit)="crearUsuario()">
-            <div class="form-group">
-                <div class="input-group">
-                    <input 
-                        type="text" 
-                        class="form-control"
-                        formControlName="nombres"
-                        placeholder="Nombres">
-                    <div class="input-group-append">
-                    <span class="input-group-text">
-                        <i class="fa fa-check-circle"></i>
-                    </span>
-                    </div>
-                </div>
-            </div>
-            <div class="form-group">
-                <div class="input-group">
-                    <input type="text" class="form-control" placeholder="Apellidos" formControlName="apellidos">
-                    <div class="input-group-append">
-                    <span class="input-group-text">
-                        <i class="fa fa-check-circle"></i>
-                    </span>
-                    </div>
-                </div>
-            </div>
-            <div class="form-group">
-                <div class="input-group">
-                    <input type="email" class="form-control" placeholder="Correo" formControlName="correo">
-                    <div class="input-group-append">
+            <form [formGroup]="registroForm" (ngSubmit)="crearUsuario()">
+                <div class="form-group">
+                    <div class="input-group">
+                        <input 
+                            type="text" 
+                            class="form-control"
+                            formControlName="Nombres"
+                            placeholder="Nombres">
+                        <div class="input-group-append">
                         <span class="input-group-text">
                             <i class="fa fa-check-circle"></i>
                         </span>
+                        </div>
                     </div>
                 </div>
-            </div>
-            <div class="form-group">
-                <div class="input-group">
-                    <input type="text" class="form-control" placeholder="Usuario" formControlName="usuario">
-                    <div class="input-group-append">
-                    <span class="input-group-text">
-                        <i class="fa fa-check-circle"></i>
-                    </span>
+                <div class="form-group">
+                    <div class="input-group">
+                        <input type="text" class="form-control" placeholder="Apellidos" formControlName="Apellidos">
+                        <div class="input-group-append">
+                        <span class="input-group-text">
+                            <i class="fa fa-check-circle"></i>
+                        </span>
+                        </div>
                     </div>
                 </div>
-            </div>
-            <div class="form-group">
-            <div class="input-group">
-                <input type="password" class="form-control" placeholder="Contraseña" formControlName="clave">
-                <div class="input-group-append">
-                <span class="input-group-text">
-                    <i class="fa fa-check-circle"></i>
-                </span>
+                <div class="form-group">
+                    <div class="input-group">
+                        <input type="email" class="form-control" placeholder="Correo" formControlName="Correo">
+                        <div class="input-group-append">
+                            <span class="input-group-text">
+                                <i class="fa fa-check-circle"></i>
+                            </span>
+                        </div>
+                    </div>
+                </div>                
+                <div class="form-group">
+                    <div class="input-group">
+                        <input type="password" class="form-control" placeholder="Contraseña" formControlName="Contrasena">
+                        <div class="input-group-append">
+                        <span class="input-group-text">
+                            <i class="fa fa-check-circle"></i>
+                        </span>
+                        </div>
+                    </div>
                 </div>
-            </div>
-            </div>
 
-            <div class="form-group">
-            <button type="submit" class="btn btn-primary submit-btn btn-block" [disabled]="registroForm.invalid">Crear cuenta</button>
-            </div>
-            <div class="text-block text-center my-3">
-            <span class="text-small font-weight-semibold">ya tienes una cuenta?</span>
-            <br>
-            <a routerLink="/login" class="text-black text-small">Login</a>
-            </div>
-        </form>
+                <div class="form-group">
+                    <button type="submit" class="btn btn-primary submit-btn btn-block" [disabled]="registroForm.invalid">Crear cuenta</button>
+                </div>
+                <div class="text-block text-center my-3">
+                <span class="text-small font-weight-semibold">ya tienes una cuenta?</span>
+                <br>
+                <a routerLink="/login" class="text-black text-small">Login</a>
+                </div>
+            </form>
         </div>
-    </div>
+     </div>
     </div>
 </div>
+
 <!-- content-wrapper ends -->
 </div>
 <!-- page-body-wrapper ends -->
+<ngx-ui-loader></ngx-ui-loader>
+<p-toast></p-toast>

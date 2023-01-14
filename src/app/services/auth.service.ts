@@ -22,16 +22,16 @@ export class AuthService {
   
   constructor(private _http: HttpClient) { }
 
-  insert(model: UsuariosModel): Observable<Observable<ResponseModel<boolean>>> {
-    return this._http.post<Observable<ResponseModel<boolean>>>(`${this.endPoint}/InsertAsync`, model, httpOptions);
+  insert(model: UsuariosModel): Observable<ResponseModel<boolean>> {
+    return this._http.post<ResponseModel<boolean>>(`${this.endPoint}/InsertAsync`, model, httpOptions);
   }
 
-  update(model: UsuariosModel): Observable<Observable<ResponseModel<boolean>>> {
-    return this._http.put<Observable<ResponseModel<boolean>>>(`${this.endPoint}/UpdateAsync`, model, httpOptions);
+  update(model: UsuariosModel): Observable<ResponseModel<boolean>> {
+    return this._http.put<ResponseModel<boolean>>(`${this.endPoint}/UpdateAsync`, model, httpOptions);
   }
 
-  getUserByUserName(model: UsuariosModel): Observable<Observable<ResponseModel<UsuariosModel>>> {        
-    return this._http.post<Observable<ResponseModel<UsuariosModel>>>(`${this.endPoint}/GetUserByUserName`, model, httpOptions );
+  getUserByUserName(model: UsuariosModel): Observable<ResponseModel<UsuariosModel>> {        
+    return this._http.post<ResponseModel<UsuariosModel>>(`${this.endPoint}/GetUserByUserName`, model, httpOptions );
   }
 
   
