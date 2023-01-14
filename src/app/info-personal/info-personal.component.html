@@ -4,7 +4,7 @@
           <div class="card-body">
             <h4 class="card-title">Agregar Información Personal</h4>
             <p class="card-description">
-              Ingrese la información requerida
+              Ingrese la información requerida              
             </p>
             <form  [formGroup]="infoPersonForm" (ngSubmit)="crearInfoPersonal()">              
               <div class="p-fluid p-grid p-formgrid">
@@ -33,34 +33,57 @@
                 </div>
                 <div class="p-field p-col-12 p-md-12">
                   <label>Foto</label>
+                  <!-- <p-fileUpload 
+                    #fubauto 
+                    mode="basic" 
+                    name="demo[]"                     
+                    accept="image/*" 
+                    
+                    (onUpload)="myUploader($event)" 
+                    [auto]="true" 
+                    chooseLabel="Examinar"></p-fileUpload> -->
                   <p-fileUpload 
                     name="myfile[]" 
                     [customUpload]="true" 
-                    chooseLabel="Examinar"
-                    uploadLabel="Subir"
+                    chooseLabel="Examinar"                    
+                    [showUploadButton]="false"
                     cancelLabel="Cancelar"
                     (uploadHandler)="myUploader($event)">
                   </p-fileUpload>
                 </div>
                 <div class="p-field p-col-12 p-md-12">
                   <label>Estado Civil</label>
-                  <p-selectButton [options]="EstadoCivil" optionLabel="name"></p-selectButton>
+                  <p-selectButton 
+                    [options]="estadoCivil" 
+                    optionLabel="Estado_Civil"
+                    formControlName="Estado_Civil"
+                    optionLabel="name"                     
+                    optionValue="code">
+                  </p-selectButton>
+                </div>
+                <div class="p-field p-col-12 p-md-12">
+                  <label>Tiene_Hermanos</label>
+                  <p-selectButton 
+                    [options]="tieneHermano" 
+                    formControlName="Tiene_Hermanos"
+                    optionLabel="Tiene_Hermanos"
+                    optionLabel="name" 
+                    optionValue="code">
+                  </p-selectButton>
                 </div>
               </div>              
               <hr>
-              <button type="button" class="btn btn-success mr-2">
-                <i class="fa fa-save"></i>
-                Agregar
-              </button>
-
-              <!-- 
-                <button disabled class="btn btn-success mr-2">
-                  <i class="fa fa-spin fa-sync"></i>
-                  Espere por favor...
-                </button> 
-              -->
               
-              <button type="reset" class="btn btn-light">Cancelar</button>
+              <p-button label="Guardar" icon="pi pi-save"></p-button>
+                            
+              <button 
+                pButton 
+                pRipple 
+                type="reset" 
+                label="Cancelar" 
+                class="p-button-raised p-button-secondary p-button-text"
+                icon="pi pi-file-o">
+              </button>
 
             </form>
           </div>

@@ -18,7 +18,8 @@ export class InfoPersonalComponent {
   
   infoPersonForm!: FormGroup;
   myfile: any[] = [];
-  EstadoCivil: GeneralModel[] = [];
+  estadoCivil: GeneralModel[] = [];
+  tieneHermano: GeneralModel[] = [];
 
   constructor(
     private fb: FormBuilder,    
@@ -26,13 +27,20 @@ export class InfoPersonalComponent {
     private ngxService: NgxUiLoaderService,
     private general: GeneralService,
   ) {
-    this.EstadoCivil = [
+
+    this.estadoCivil = [
       {name: 'Soltero', code: 'false'},
-      {name: 'Casado', code: 'true'}      
-  ];
+      {name: 'Casado', code: 'true'}
+    ];
+
+    this.tieneHermano = [
+      {name: 'No', code: 'false'},
+      {name: 'Si', code: 'true'}
+    ];
   }
 
-  ngOnInit(): void {    
+  ngOnInit(): void { 
+
     this.infoPersonForm = this.fb.group({
       Nombres: ['', Validators.required],
       Apellidos: ['', Validators.required],      
