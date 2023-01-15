@@ -21,17 +21,9 @@ export class InfoPersonalService {
 
   endPoint = `${environment.apiURL}/Clientes`;
 
-  constructor(private _http: HttpClient) { }
+  constructor(private _http: HttpClient) { }  
 
-  insert2(formData: FormData, model: ClientesModel): Observable<ResponseModel<boolean>> {
-    return this._http.post<ResponseModel<boolean>>(`${this.endPoint}/InsertAsync`, {formData, model}, httpOptions);
-  }
-
-  insert(formData: FormData, model: ClientesModel): Observable<ResponseModel<boolean>> {
-    return this._http.post<ResponseModel<boolean>>(`${this.endPoint}/InsertAsync`, {formData, model}, httpOptions);
-  }
-
-  insertFormData(formData: FormData): Observable<ResponseModel<boolean>> {    
+  insert(formData: FormData): Observable<ResponseModel<boolean>> {    
     return this._http.post<ResponseModel<boolean>>(`${this.endPoint}/InsertAsync`, formData, httpOptions);
   }
 

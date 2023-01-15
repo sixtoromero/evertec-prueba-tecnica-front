@@ -2,30 +2,29 @@
     <div class="col-12">
         <div class="card">
           <div class="card-body">
-            <h4 class="card-title">Detalle de ingreso egreso</h4>
-
-            <table class="table">
-              <thead>
-                <tr>
-                  <th>Descripción</th>
-                  <th>Monto</th>
-                  <th>Tipo</th>
-                  <th></th>
-                </tr>
-              </thead>
-
-              <tbody>
-                <tr>
-                  <td>Descripción</td>
-                  <td>Monto</td>
-                  <td>Tipo</td>
-                  <td>acciones</td>
-                </tr>
-              </tbody>
-
-            </table>
-
-
+            <h4 class="card-title">Detalle de Información Personal</h4>            
+            <p-table [value]="infoPersonal">
+              <ng-template pTemplate="header">
+                    <tr>
+                        <th>Id</th>
+                        <th>Nombres</th>
+                        <th>Apellidos</th>
+                        <th>Fecha Nacimiento</th>
+                        <th>Foto</th>
+                    </tr>
+                </ng-template>
+                <ng-template pTemplate="body" let-info>
+                    <tr>
+                        <td>{{info.Id}}</td>
+                        <td>{{info.Nombres}}</td>
+                        <td>{{info.Apellidos}}</td>
+                        <td>{{info.Fecha_Nacimiento | date }}</td>
+                        <td>
+                          <img src="{{info.Foto}}" width="20px" />
+                        </td>
+                    </tr>
+                </ng-template>
+            </p-table>
           </div>
         </div>
     </div>

@@ -72,9 +72,9 @@ export class InfoPersonalComponent {
 
       const formData = new FormData();
       formData.append('File', this.files[0]);
-      formData.append('jsonModel', JSON.stringify(model));      
+      formData.append('jsonModel', JSON.stringify(model));
 
-      this.info.insertFormData(formData)
+      this.info.insert(formData)
       .pipe(finalize(() => this.ngxService.stop()))
       .subscribe(response => {
         if (response["IsSuccess"]){                
