@@ -83,7 +83,11 @@ export class InfoPersonalComponent {
     const file = event.target.files[0];
     
     this.nameImage = file['name'];
-    this.sizeImage = file['size'];
+    //this.sizeImage = file['size'];
+
+    const byteSize = require('byte-size');
+
+    this.sizeImage = byteSize(parseInt(file['size']));
 
     const reader = new FileReader();
     reader.onload = () => {
