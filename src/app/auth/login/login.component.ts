@@ -4,7 +4,7 @@ import { Router } from '@angular/router';
 import { NgxUiLoaderService } from 'ngx-ui-loader';
 import { MessageService } from 'primeng/api';
 import { finalize } from 'rxjs';
-import { UsuariosModel } from 'src/app/models/clientes.model';
+import { UsuariosModel } from 'src/app/models/usuarios.model';
 import { AuthService } from 'src/app/services/auth.service';
 import { GeneralService } from 'src/app/services/general.service';
 

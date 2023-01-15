@@ -1,11 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { AuthService } from 'src/app/services/auth.service';
-import { UsuariosModel } from '../../models/clientes.model';
+
 import { NgxUiLoaderService } from 'ngx-ui-loader';
 import { finalize } from 'rxjs/operators';
 import { GeneralService } from 'src/app/services/general.service';
 import { ConfirmationService, MessageService } from 'primeng/api';
+import { UsuariosModel } from 'src/app/models/usuarios.model';
 
 
 @Component({

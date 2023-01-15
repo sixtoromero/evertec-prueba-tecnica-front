@@ -1,6 +1,6 @@
 import { Deserializable } from './deserializable.model';
 
-export class UsuariosModel implements Deserializable  {    
+export class ClientesModel implements Deserializable  {    
     public Id!: number;
     public Nombres!: string;
     public Apellidos!: string;

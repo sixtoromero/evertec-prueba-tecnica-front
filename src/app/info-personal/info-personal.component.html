@@ -32,23 +32,14 @@
                   </p-calendar>            
                 </div>
                 <div class="p-field p-col-12 p-md-12">
-                  <label>Foto</label>
-                  <!-- <p-fileUpload 
-                    #fubauto 
-                    mode="basic" 
-                    name="demo[]"                     
-                    accept="image/*" 
-                    
-                    (onUpload)="myUploader($event)" 
-                    [auto]="true" 
-                    chooseLabel="Examinar"></p-fileUpload> -->
-                  <p-fileUpload 
-                    name="myfile[]" 
-                    [customUpload]="true" 
+                  <label>Foto</label>                  
+                  <p-fileUpload
+                    name="files[]"
+                    [customUpload]="true"                     
                     chooseLabel="Examinar"                    
                     [showUploadButton]="false"
                     cancelLabel="Cancelar"
-                    (uploadHandler)="myUploader($event)">
+                    (uploadHandler)="onUpload($event)">
                   </p-fileUpload>
                 </div>
                 <div class="p-field p-col-12 p-md-12">
@@ -74,7 +65,7 @@
               </div>              
               <hr>
               
-              <p-button label="Guardar" icon="pi pi-save"></p-button>
+              <p-button type="submit" label="Guardar" icon="pi pi-save"></p-button>              
                             
               <button 
                 pButton 
