@@ -33,31 +33,35 @@
                 </div>
                 <div class="p-field p-col-12 p-md-12">
                   <label>Foto</label>
-                  <!-- <input class="form-control" type="file" id="formFile"> -->
+                  <!-- <p-fileUpload                     
+                    [customUpload]="true"
+                    chooseLabel="Examinar"
+                    uploadLabel="Subir"
+                    chooseLabel="Examinar"
+                    [showUploadButton]="false"
+                    cancelLabel="Cancelar">
+                  </p-fileUpload> -->
                   <input 
                       (change)="getFile($event)"
                       type="file" 
                       formControlName="Foto"
                       pInputText />
-                      <table class="table" *ngIf="imageData">
-                        <thead>
-                          <tr>                            
-                            <th scope="col">Imagen</th>
-                            <th scope="col">Nombre</th>
-                            <th scope="col">Tamaño</th>
-                          </tr>
-                        </thead>
-                        <tbody>
-                          <tr>                            
-                            <td><img width="200px" [src]="imageData" alt=""></td>
-                            <td>{{ nameImage }}</td>
-                            <td>{{ sizeImage }}</td>
-                          </tr>                          
-                        </tbody>
-                      </table>                      
-                  <!-- <div *ngIf="previsualizacion">
-                    
-                  </div> -->
+                  <table class="table" *ngIf="imageData">
+                    <thead>
+                      <tr>                            
+                        <th scope="col">Imagen</th>
+                        <th scope="col">Nombre</th>
+                        <th scope="col">Tamaño</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr>                            
+                        <td><img width="200px" [src]="imageData" alt=""></td>
+                        <td>{{ nameImage }}</td>
+                        <td>{{ sizeImage }}</td>
+                      </tr>                          
+                    </tbody>
+                  </table>
                 </div>
                 <div class="p-field p-col-12 p-md-12">
                   <label>Estado Civil</label>

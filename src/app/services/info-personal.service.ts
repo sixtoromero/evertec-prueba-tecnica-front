@@ -9,7 +9,8 @@ import { ClientesModel } from '../models/clientes.model';
 
 const httpOptions = {
   headers: new HttpHeaders({
-      'Contend-Type': 'application/json'
+      'Contend-Type': 'multipart/form-data',
+      'Accept': 'application/json'
   })
 };
 
@@ -22,8 +23,16 @@ export class InfoPersonalService {
 
   constructor(private _http: HttpClient) { }
 
-  insert(model: ClientesModel): Observable<ResponseModel<boolean>> {
-    return this._http.post<ResponseModel<boolean>>(`${this.endPoint}/InsertAsync`, model, httpOptions);
+  insert2(formData: FormData, model: ClientesModel): Observable<ResponseModel<boolean>> {
+    return this._http.post<ResponseModel<boolean>>(`${this.endPoint}/InsertAsync`, {formData, model}, httpOptions);
+  }
+
+  insert(formData: FormData, model: ClientesModel): Observable<ResponseModel<boolean>> {
+    return this._http.post<ResponseModel<boolean>>(`${this.endPoint}/InsertAsync`, {formData, model}, httpOptions);
+  }
+
+  insertFormData(formData: FormData): Observable<ResponseModel<boolean>> {    
+    return this._http.post<ResponseModel<boolean>>(`${this.endPoint}/InsertAsync`, formData, httpOptions);
   }
 
   update(model: ClientesModel): Observable<ResponseModel<boolean>> {

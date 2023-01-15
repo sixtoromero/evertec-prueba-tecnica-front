@@ -7,7 +7,7 @@ export class ClientesModel implements Deserializable  {
     public Fecha_Nacimiento!: Date;
     public Foto!: string;
     public Estado_Civil!: boolean;
-    public Tiene_Hermanos!: boolean;
+    public Tiene_Hermanos!: boolean;    
 
     deserialize(input: any) {
         Object.assign(this, input);
