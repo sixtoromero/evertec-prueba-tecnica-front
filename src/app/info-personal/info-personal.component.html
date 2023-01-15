@@ -44,6 +44,7 @@
                   <input 
                       (change)="getFile($event)"
                       type="file" 
+                      accept="image/*"
                       formControlName="Foto"
                       pInputText />
                   <table class="table" *ngIf="imageData">
