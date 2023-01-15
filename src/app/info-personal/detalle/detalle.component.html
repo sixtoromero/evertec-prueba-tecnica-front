@@ -3,7 +3,7 @@
         <div class="card">
           <div class="card-body">
             <h4 class="card-title">Detalle de Información Personal</h4>            
-            <p-table [value]="infoPersonal">
+            <p-table [value]="infoPersonal" [paginator]="true" [rows]="5">
               <ng-template pTemplate="header">
                     <tr>
                         <th>Id</th>

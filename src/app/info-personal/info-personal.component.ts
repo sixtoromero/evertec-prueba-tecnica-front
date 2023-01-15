@@ -63,8 +63,6 @@ export class InfoPersonalComponent {
   }
 
   crearInfoPersonal(){    
-
-
     try {
       this.ngxService.start();
       let model = this.prepareSave();    
@@ -82,6 +80,7 @@ export class InfoPersonalComponent {
           this.general.showSuccess('registrado exitosamente');
           this.infoPersonForm.reset();
           this.imageData = '';
+          this.files = [];
         } else {
           this.general.showError(`Ha ocurrido un error inesperado: ${response["Message"]}`);
         }
