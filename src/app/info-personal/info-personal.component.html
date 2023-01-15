@@ -4,16 +4,16 @@
           <div class="card-body">
             <h4 class="card-title">Agregar Información Personal</h4>
             <p class="card-description">
-              Ingrese la información requerida              
+              Ingrese la información requerida
             </p>
-            <form  [formGroup]="infoPersonForm" (ngSubmit)="crearInfoPersonal()">              
+            <form  [formGroup]="infoPersonForm" (ngSubmit)="crearInfoPersonal()">
               <div class="p-fluid p-grid p-formgrid">
                 <div class="p-field p-col-12 p-md-12">
                   <label>Nombres</label>
                   <input 
-                    type="text" 
+                    type="text"
                     formControlName="Nombres"
-                    pInputText />                  
+                    pInputText />
                 </div>
                 <div class="p-field p-col-12 p-md-12">
                   <label>Apellidos</label>
@@ -32,15 +32,32 @@
                   </p-calendar>            
                 </div>
                 <div class="p-field p-col-12 p-md-12">
-                  <label>Foto</label>                  
-                  <p-fileUpload
-                    name="files[]"
-                    [customUpload]="true"                     
-                    chooseLabel="Examinar"                    
-                    [showUploadButton]="false"
-                    cancelLabel="Cancelar"
-                    (uploadHandler)="onUpload($event)">
-                  </p-fileUpload>
+                  <label>Foto</label>
+                  <!-- <input class="form-control" type="file" id="formFile"> -->
+                  <input 
+                      (change)="getFile($event)"
+                      type="file" 
+                      formControlName="Foto"
+                      pInputText />
+                      <table class="table" *ngIf="imageData">
+                        <thead>
+                          <tr>                            
+                            <th scope="col">Imagen</th>
+                            <th scope="col">Nombre</th>
+                            <th scope="col">Tamaño</th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                          <tr>                            
+                            <td><img width="200px" [src]="imageData" alt=""></td>
+                            <td>{{ nameImage }}</td>
+                            <td>{{ sizeImage }}</td>
+                          </tr>                          
+                        </tbody>
+                      </table>                      
+                  <!-- <div *ngIf="previsualizacion">
+                    
+                  </div> -->
                 </div>
                 <div class="p-field p-col-12 p-md-12">
                   <label>Estado Civil</label>
@@ -62,10 +79,10 @@
                     optionValue="code">
                   </p-selectButton>
                 </div>
-              </div>              
+              </div>
               <hr>
               
-              <p-button type="submit" label="Guardar" icon="pi pi-save"></p-button>              
+              <p-button type="submit" label="Guardar" icon="pi pi-save" [disabled]="infoPersonForm.invalid"></p-button>              
                             
               <button 
                 pButton 
@@ -81,3 +98,5 @@
         </div>
       </div>
 </div>
+<ngx-ui-loader></ngx-ui-loader>
+<p-toast></p-toast>

@@ -7,6 +7,7 @@ import { ConfirmationService, MessageService } from 'primeng/api';
 import { GeneralModel } from '../models/general.model';
 import { InfoPersonalService } from '../services/info-personal.service';
 import { ClientesModel } from '../models/clientes.model';
+import { DomSanitizer } from '@angular/platform-browser';
 
 
 @Component({
@@ -18,9 +19,10 @@ import { ClientesModel } from '../models/clientes.model';
 export class InfoPersonalComponent {
   
   infoPersonForm!: FormGroup;
-  myfile: any[] = [];
-
-  uploadedFiles: any[] = [];
+  files: any = [];  
+  imageData: string = '';
+  nameImage: string = '';
+  sizeImage: string = '';
 
   estadoCivil: GeneralModel[] = [];
   tieneHermano: GeneralModel[] = [];
@@ -30,6 +32,7 @@ export class InfoPersonalComponent {
     private info: InfoPersonalService,
     private ngxService: NgxUiLoaderService,
     private general: GeneralService,
+    private sanitizer: DomSanitizer
   ) {
 
     this.estadoCivil = [
@@ -49,7 +52,7 @@ export class InfoPersonalComponent {
       Nombres: ['', Validators.required],
       Apellidos: ['', Validators.required],      
       Fecha_Nacimiento: ['', Validators.required],            
-      Foto: ['', Validators.required],            
+      Foto: ['', Validators.required],
       Estado_Civil: ['', Validators.required],
       Tiene_Hermanos: ['', Validators.required]
     });
@@ -58,8 +61,8 @@ export class InfoPersonalComponent {
   crearInfoPersonal(){    
     this.ngxService.start();
     let model = this.prepareSave();    
-    model.Id = 0;
-    
+    model.Id = 0;        
+
     this.info.insert(model)
     .pipe(finalize(() => this.ngxService.stop()))
     .subscribe(response => {
@@ -74,14 +77,19 @@ export class InfoPersonalComponent {
       this.ngxService.stop();
       this.general.showError('Ha ocurrido un error inesperado.');
     });
-  }
+  }  
 
-  onUpload(event: any) {
-    for(let file of event.files){
-      this.uploadedFiles.push(file);
-    }
+  getFile(event: any): any {
+    const file = event.target.files[0];
+    
+    this.nameImage = file['name'];
+    this.sizeImage = file['size'];
 
-    console.log('uploadedFiles', this.uploadedFiles);
+    const reader = new FileReader();
+    reader.onload = () => {
+      this.imageData = reader.result as string;      
+    };
+    reader.readAsDataURL(file);        
   }
 
   private prepareSave(): ClientesModel {
