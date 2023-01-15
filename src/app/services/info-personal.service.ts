@@ -31,6 +31,10 @@ export class InfoPersonalService {
     return this._http.put<ResponseModel<boolean>>(`${this.endPoint}/UpdateAsync`, model, httpOptions);
   }
 
+  delete(Id: number, fileName: string): Observable<ResponseModel<string>> {
+    return this._http.delete<ResponseModel<string>>(`${this.endPoint}/DelAsync?Id=${Id}&fileName=${fileName}`, httpOptions);
+  }
+
   getClienteById(Id: number): Observable<ResponseModel<ClientesModel>> {
     return this._http.get<ResponseModel<ClientesModel>>(`${this.endPoint}/GetAsync/${Id}`);
   }
@@ -38,5 +42,5 @@ export class InfoPersonalService {
   getAll(): Observable<ResponseModel<ClientesModel[]>> {
     return this._http.get<ResponseModel<ClientesModel[]>>(`${this.endPoint}/GetAllAsync` );
   }
-  
+
 }

@@ -6,11 +6,12 @@
             <p-table [value]="infoPersonal" [paginator]="true" [rows]="5">
               <ng-template pTemplate="header">
                     <tr>
-                        <th>Id</th>
-                        <th>Nombres</th>
-                        <th>Apellidos</th>
-                        <th>Fecha Nacimiento</th>
+                        <th pSortableColumn="Id">Id<p-sortIcon field="Id"></p-sortIcon></th>
+                        <th pSortableColumn="Nombres">Nombres<p-sortIcon field="Nombres"></p-sortIcon></th>
+                        <th pSortableColumn="Apellidos">Apellidos<p-sortIcon field="Apellidos"></p-sortIcon></th>
+                        <th pSortableColumn="Fecha_Nacimiento">Fecha Nacimiento<p-sortIcon field="Fecha_Nacimiento"></p-sortIcon></th>
                         <th>Foto</th>
+                        <th></th>
                     </tr>
                 </ng-template>
                 <ng-template pTemplate="body" let-info>
@@ -22,6 +23,16 @@
                         <td>
                           <img src="{{info.Foto}}" width="20px" />
                         </td>
+                        <td>
+                          <div class="row" style="text-align:center;">
+                            <div class="col-md-2">
+                              <button pButton pRipple type="button" icon="pi pi-pencil" (click)="onRowEditInit(info.Id)" class="p-button-rounded p-button-text"></button>                            
+                            </div>
+                            <div class="col-md-2">
+                              <button pButton pRipple type="button" icon="pi pi-times" (click)="onRowDelete(info.Id, info.Foto)" class="p-button-rounded p-button-text p-button-danger"></button>
+                            </div>
+                          </div>                          
+                        </td>
                     </tr>
                 </ng-template>
             </p-table>
@@ -29,3 +40,4 @@
         </div>
     </div>
 </div>
+<p-confirmDialog header="Confirmation" icon="pi pi-exclamation-triangle"></p-confirmDialog>

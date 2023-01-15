@@ -18,6 +18,7 @@ import {InputMaskModule} from 'primeng/inputmask';
 import {MenubarModule} from 'primeng/menubar';
 import {FileUploadModule} from 'primeng/fileupload';
 import {SelectButtonModule} from 'primeng/selectbutton';
+import {ConfirmDialogModule} from 'primeng/confirmdialog';
 
 
 @NgModule({
@@ -42,7 +43,8 @@ import {SelectButtonModule} from 'primeng/selectbutton';
         InputMaskModule,
         MenubarModule,
         FileUploadModule,
-        SelectButtonModule
+        SelectButtonModule,
+        ConfirmDialogModule
     ],
     exports: [        
         RouterModule,        
@@ -59,7 +61,8 @@ import {SelectButtonModule} from 'primeng/selectbutton';
         InputMaskModule,
         MenubarModule,
         FileUploadModule,
-        SelectButtonModule
+        SelectButtonModule,
+        ConfirmDialogModule
     ],
     providers:[]
 })

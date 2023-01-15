@@ -8,7 +8,6 @@ import { DomSanitizer } from '@angular/platform-browser';
 import { ClientesModel } from 'src/app/models/clientes.model';
 import { InfoPersonalService } from 'src/app/services/info-personal.service';
 
-
 @Component({
   selector: 'app-detalle',
   templateUrl: './detalle.component.html',
@@ -23,6 +22,7 @@ export class DetalleComponent {
     private info: InfoPersonalService,
     private ngxService: NgxUiLoaderService,
     private general: GeneralService,    
+    private confirmationService: ConfirmationService
   ){
     this.getAllInfoPersonal();
   }
@@ -41,6 +41,32 @@ export class DetalleComponent {
       this.ngxService.stop()
       this.general.showError('Ha ocurrido un error inesperado.');
     });
+  }
+
+  onRowEditInit(Id: number){
+
+  }
+
+  onRowDelete(Id: number, fileName: string){
+    this.confirmationService.confirm({
+      message: 'Realmente desea eliminar el registro seleccionado?',
+      accept: () => {
+        const path = fileName.split('/');
+        this.ngxService.start();
+        this.info.delete(Id, path[path.length - 1])
+        .pipe(finalize(() => this.ngxService.stop()))
+        .subscribe(response => {      
+          console.log(response);
+          if (response["IsSuccess"]) {        
+            this.general.showSuccess("Se ha eliminado el registro correctamente.");
+            this.getAllInfoPersonal();
+          }
+        }, error => {
+          this.ngxService.stop();
+          this.general.showError('Ha ocurrido un error inesperado.');          
+        });
+      }
+  });
   }
 
 }
