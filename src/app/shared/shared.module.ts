@@ -19,7 +19,7 @@ import {MenubarModule} from 'primeng/menubar';
 import {FileUploadModule} from 'primeng/fileupload';
 import {SelectButtonModule} from 'primeng/selectbutton';
 import {ConfirmDialogModule} from 'primeng/confirmdialog';
-
+import {DynamicDialogModule} from 'primeng/dynamicdialog';
 
 @NgModule({
     declarations: [
@@ -44,7 +44,8 @@ import {ConfirmDialogModule} from 'primeng/confirmdialog';
         MenubarModule,
         FileUploadModule,
         SelectButtonModule,
-        ConfirmDialogModule
+        ConfirmDialogModule,
+        DynamicDialogModule
     ],
     exports: [        
         RouterModule,        
@@ -62,7 +63,8 @@ import {ConfirmDialogModule} from 'primeng/confirmdialog';
         MenubarModule,
         FileUploadModule,
         SelectButtonModule,
-        ConfirmDialogModule
+        ConfirmDialogModule,
+        DynamicDialogModule
     ],
     providers:[]
 })

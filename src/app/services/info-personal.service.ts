@@ -36,7 +36,7 @@ export class InfoPersonalService {
   }
 
   getClienteById(Id: number): Observable<ResponseModel<ClientesModel>> {
-    return this._http.get<ResponseModel<ClientesModel>>(`${this.endPoint}/GetAsync/${Id}`);
+    return this._http.get<ResponseModel<ClientesModel>>(`${this.endPoint}/GetAsync?ID=${Id}`);
   }
 
   getAll(): Observable<ResponseModel<ClientesModel[]>> {

@@ -33,14 +33,6 @@
                 </div>
                 <div class="p-field p-col-12 p-md-12">
                   <label>Foto</label>
-                  <!-- <p-fileUpload                     
-                    [customUpload]="true"
-                    chooseLabel="Examinar"
-                    uploadLabel="Subir"
-                    chooseLabel="Examinar"
-                    [showUploadButton]="false"
-                    cancelLabel="Cancelar">
-                  </p-fileUpload> -->
                   <input 
                       (change)="getFile($event)"
                       type="file" 
@@ -75,7 +67,7 @@
                   </p-selectButton>
                 </div>
                 <div class="p-field p-col-12 p-md-12">
-                  <label>Tiene_Hermanos</label>
+                  <label>Tiene Hermanos</label>
                   <p-selectButton 
                     [options]="tieneHermano" 
                     formControlName="Tiene_Hermanos"

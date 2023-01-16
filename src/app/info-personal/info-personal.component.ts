@@ -9,6 +9,7 @@ import { InfoPersonalService } from '../services/info-personal.service';
 import { ClientesModel } from '../models/clientes.model';
 import { DomSanitizer } from '@angular/platform-browser';
 import { FileUpload } from 'primeng/fileupload';
+import { ActivatedRoute, Route, TitleStrategy } from '@angular/router';
 
 
 @Component({
@@ -20,23 +21,28 @@ import { FileUpload } from 'primeng/fileupload';
 export class InfoPersonalComponent {
   
     
-  infoPersonForm!: FormGroup;
+  infoPersonForm: FormGroup  = new FormGroup({});
   
   files: any = [];  
 
   imageData: string = '';
   nameImage: string = '';
-  sizeImage: string = '';
+  sizeImage: string = ''; 
+  Id: number = 0;
 
   estadoCivil: GeneralModel[] = [];
   tieneHermano: GeneralModel[] = [];
+
+  infoPerson!: ClientesModel;
+
 
   constructor(
     private fb: FormBuilder,        
     private info: InfoPersonalService,
     private ngxService: NgxUiLoaderService,
     private general: GeneralService,
-    private sanitizer: DomSanitizer
+    private sanitizer: DomSanitizer,    
+    private route: ActivatedRoute
   ) {
 
     this.estadoCivil = [
@@ -53,6 +59,7 @@ export class InfoPersonalComponent {
   ngOnInit(): void { 
 
     this.infoPersonForm = this.fb.group({
+      Id: [0, ''],
       Nombres: ['', Validators.required],
       Apellidos: ['', Validators.required],      
       Fecha_Nacimiento: ['', Validators.required],            
@@ -60,7 +67,15 @@ export class InfoPersonalComponent {
       Estado_Civil: ['', Validators.required],
       Tiene_Hermanos: ['', Validators.required]
     });
-  }
+
+    // this.Id = this.route.snapshot.params['id'];
+    // if (this.Id != undefined){
+    //   this.getInfoPersonaById();
+    // }
+
+  }  
+
+  
 
   crearInfoPersonal(){    
     try {
@@ -90,10 +105,8 @@ export class InfoPersonalComponent {
       });      
     } catch (error) {
       console.log('ERROR', error);
-    }
-
-    
-  }  
+    } 
+  }
 
   getFile(event: any): any {
     const file = event.target.files[0];

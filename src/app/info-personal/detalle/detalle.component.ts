@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, OnDestroy, OnInit, ViewChild } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { NgxUiLoaderService } from 'ngx-ui-loader';
 import { finalize } from 'rxjs/operators';
@@ -7,25 +7,55 @@ import { ConfirmationService, MessageService } from 'primeng/api';
 import { DomSanitizer } from '@angular/platform-browser';
 import { ClientesModel } from 'src/app/models/clientes.model';
 import { InfoPersonalService } from 'src/app/services/info-personal.service';
+import { Router } from '@angular/router';
+import { DialogService, DynamicDialogRef } from 'primeng/dynamicdialog';
+import { ModInfoPersonComponent } from '../mod-info-person/mod-info-person.component';
 
 @Component({
   selector: 'app-detalle',
   templateUrl: './detalle.component.html',
   styleUrls: ['./detalle.component.scss'],
-  providers: [GeneralService, MessageService, ConfirmationService]
+  providers: [GeneralService, MessageService, ConfirmationService, DialogService]
 })
-export class DetalleComponent {
+export class DetalleComponent implements OnDestroy {
 
   infoPersonal: ClientesModel[] = [];
+  ref!: DynamicDialogRef;
+
+  infoPerson!: ClientesModel;
 
   constructor(    
     private info: InfoPersonalService,
     private ngxService: NgxUiLoaderService,
     private general: GeneralService,    
-    private confirmationService: ConfirmationService
+    private confirmationService: ConfirmationService,
+    private dialogService: DialogService,
+    private router: Router
   ){
     this.getAllInfoPersonal();
   }
+
+  ngOnDestroy() {
+    if (this.ref) {
+        this.ref.close();
+    }
+  }
+
+  getInfoPersonaById(Id: number){
+    this.ngxService.start();
+    this.info.getClienteById(Id)
+    .pipe(finalize(() => this.ngxService.stop()))
+    .subscribe(response => {
+      console.log('Respuesta', response);
+      if (response["IsSuccess"]) {
+        this.infoPerson = response["Data"] as ClientesModel;
+        
+      }
+    }, error => {
+      this.ngxService.stop()
+      this.general.showError('Ha ocurrido un error inesperado.');
+    });
+  }  
 
   getAllInfoPersonal() {
     this.ngxService.start();
@@ -44,8 +74,10 @@ export class DetalleComponent {
   }
 
   onRowEditInit(Id: number){
+    //this.router.navigate(['/info-persona', Id]);
 
   }
+  
 
   onRowDelete(Id: number, fileName: string){
     this.confirmationService.confirm({

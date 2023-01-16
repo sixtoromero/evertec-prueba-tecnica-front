@@ -19,6 +19,8 @@ import { NgxUiLoaderModule } from 'ngx-ui-loader';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 //import { MessageService } from 'primeng/api';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { ModInfoPersonComponent } from './info-personal/mod-info-person/mod-info-person.component';
+
 //import {ToastModule} from 'primeng/toast';
 
 @NgModule({
@@ -32,7 +34,8 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     DetalleComponent,
     FooterComponent,
     NavbarComponent,
-    SidebarComponent
+    SidebarComponent,
+    ModInfoPersonComponent
   ],
   imports: [
     BrowserModule,

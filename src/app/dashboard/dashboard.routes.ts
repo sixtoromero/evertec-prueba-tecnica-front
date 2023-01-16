@@ -6,5 +6,6 @@ import { DetalleComponent } from '../info-personal/detalle/detalle.component';
 export const dashboardRoutes: Routes = [
     { path: '', component: EstadisticaComponent },
     { path: 'info-persona', component: InfoPersonalComponent },
+    //{ path: 'info-persona/:id', component: InfoPersonalComponent },
     { path: 'detalle', component: DetalleComponent },
 ];
