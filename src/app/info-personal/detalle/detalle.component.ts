@@ -23,6 +23,10 @@ export class DetalleComponent implements OnDestroy {
   infoPersonal: ClientesModel[] = [];
   ref!: DynamicDialogRef;
   displayBasic!: boolean;
+  files: any = [];
+  imageData: string = '';
+  nameImage: string = '';
+  sizeImage: string = ''; 
 
   infoPerson = new ClientesModel();
 
@@ -50,6 +54,8 @@ export class DetalleComponent implements OnDestroy {
       if (response["IsSuccess"]) {
         this.infoPerson = response["Data"] as ClientesModel;  
         this.infoPerson.Fecha_Nacimiento_formato = moment(this.infoPerson.Fecha_Nacimiento).format('MM-DD-YYYY');
+        this.imageData = this.infoPerson.Foto;
+
         console.log('Info Perosnal Modal', this.infoPerson);
         this.displayBasic = true;
       }
@@ -103,8 +109,51 @@ export class DetalleComponent implements OnDestroy {
     });
   }
 
-  getFile(event: any){
+  getFile(event: any): any {
+    const file = event.target.files[0];
+    this.files.push(file);
     
+    this.nameImage = file['name'];    
+    const byteSize = require('byte-size');
+    this.sizeImage = byteSize(parseInt(file['size']));
+
+    const reader = new FileReader();
+    reader.onload = () => {
+      this.imageData = reader.result as string;      
+    };
+    reader.readAsDataURL(file);
+  }
+
+  updateInfoPersona(){
+    try {
+
+      this.ngxService.start();
+      const formData = new FormData();
+
+      formData.append('File', this.files[0]);
+      formData.append('jsonModel', JSON.stringify(this.infoPerson));
+
+      this.info.update(formData)
+      .pipe(finalize(() => this.ngxService.stop()))
+      .subscribe(response => {
+        if (response["IsSuccess"]){                
+          //Cargar registros guardados
+          
+          this.general.showSuccess('registrado exitosamente');          
+          this.imageData = '';
+          this.files = [];
+          this.displayBasic = false;
+
+        } else {
+          this.general.showError(`Ha ocurrido un error inesperado: ${response["Message"]}`);
+        }
+      }, error => {
+        this.ngxService.stop();
+        this.general.showError('Ha ocurrido un error inesperado.');
+      });      
+    } catch (error) {
+      console.log('ERROR', error);
+    } 
   }
 
 }

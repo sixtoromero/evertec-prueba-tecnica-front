@@ -27,8 +27,8 @@ export class InfoPersonalService {
     return this._http.post<ResponseModel<boolean>>(`${this.endPoint}/InsertAsync`, formData, httpOptions);
   }
 
-  update(model: ClientesModel): Observable<ResponseModel<boolean>> {
-    return this._http.put<ResponseModel<boolean>>(`${this.endPoint}/UpdateAsync`, model, httpOptions);
+  update(formData: FormData): Observable<ResponseModel<boolean>> {
+    return this._http.put<ResponseModel<boolean>>(`${this.endPoint}/UpdateAsync`, formData, httpOptions);
   }
 
   delete(Id: number, fileName: string): Observable<ResponseModel<string>> {

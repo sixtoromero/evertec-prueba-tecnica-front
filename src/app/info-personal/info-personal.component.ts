@@ -23,7 +23,7 @@ export class InfoPersonalComponent {
     
   infoPersonForm: FormGroup  = new FormGroup({});
   
-  files: any = [];  
+  files: any = [];
 
   imageData: string = '';
   nameImage: string = '';

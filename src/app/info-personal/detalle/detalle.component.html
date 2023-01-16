@@ -64,19 +64,18 @@
             accept="image/*"            
             class="form-control" />
             <hr>
-            <img [src]="infoPerson.Foto" alt="" width="200px">
-
+            <img [src]="imageData" alt="" width="200px">
       </div>
     </div>    
     <div class="col-12">
       <div class="form-group">
-        <label for="txtFecha_Nacimiento">Fecha de Nacimiento</label>
+        <label for="txtFecha_Nacimiento">Fecha de Nacimiento</label>        
         <input 
           type="text" 
           class="form-control" 
           id="txtFecha_Nacimiento" 
           name="txtFecha_Nacimiento" 
-          [(ngModel)]="infoPerson.Fecha_Nacimiento_formato">        
+          [(ngModel)]="infoPerson.Fecha_Nacimiento_formato">
       </div>
     </div>
     <div class="col-12">
@@ -90,7 +89,7 @@
     </div>
     <div class="col-12">
       <div class="form-group">
-        <label for="cboEstado_Civil">¿Tiene Hermanos?</label>        
+        <label for="cboEstado_Civil">¿Tiene Hermanos?</label>
         <select class="form-control" id="cboTiene_Hermanos" name="cboTiene_Hermanos" [(ngModel)]="infoPerson.Tiene_Hermanos">
           <option value="false">No</option>
           <option value="true">Si</option>
@@ -99,7 +98,8 @@
     </div>
   </div>
   <ng-template pTemplate="footer">
-      <p-button icon="pi pi-check" (click)="displayBasic=false" label="Ok" styleClass="p-button-text"></p-button>
+      <p-button icon="pi pi-times" (click)="displayBasic=false" label="Cancelar" styleClass="p-button-text"></p-button>
+      <p-button icon="pi pi-save" (click)="updateInfoPersona()" label="Guardar" styleClass="p-button-text"></p-button>
   </ng-template>
 </p-dialog>
 
