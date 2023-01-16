@@ -5,6 +5,7 @@ export class ClientesModel implements Deserializable  {
     public Nombres!: string;
     public Apellidos!: string;
     public Fecha_Nacimiento!: Date;
+    public Fecha_Nacimiento_formato!: string;
     public Foto!: string;
     public Estado_Civil!: boolean;
     public Tiene_Hermanos!: boolean;    

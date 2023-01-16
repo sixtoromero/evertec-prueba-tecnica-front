@@ -63,8 +63,9 @@
             type="file" 
             accept="image/*"            
             class="form-control" />
+            <hr>
+            <img [src]="infoPerson.Foto" alt="" width="200px">
 
-            <!-- <img src="infoPerson.Foto" alt=""> -->
       </div>
     </div>    
     <div class="col-12">
@@ -75,9 +76,7 @@
           class="form-control" 
           id="txtFecha_Nacimiento" 
           name="txtFecha_Nacimiento" 
-          [(ngModel)]="infoPerson.Fecha_Nacimiento">
-        <hr>
-        <img src="" alt="">
+          [(ngModel)]="infoPerson.Fecha_Nacimiento_formato">        
       </div>
     </div>
     <div class="col-12">

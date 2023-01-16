@@ -10,6 +10,7 @@ import { InfoPersonalService } from 'src/app/services/info-personal.service';
 import { Router } from '@angular/router';
 import { DialogService, DynamicDialogRef } from 'primeng/dynamicdialog';
 import { ModInfoPersonComponent } from '../mod-info-person/mod-info-person.component';
+import * as moment from 'moment';
 
 @Component({
   selector: 'app-detalle',
@@ -48,6 +49,7 @@ export class DetalleComponent implements OnDestroy {
       console.log('Respuesta', response);
       if (response["IsSuccess"]) {
         this.infoPerson = response["Data"] as ClientesModel;  
+        this.infoPerson.Fecha_Nacimiento_formato = moment(this.infoPerson.Fecha_Nacimiento).format('MM-DD-YYYY');
         console.log('Info Perosnal Modal', this.infoPerson);
         this.displayBasic = true;
       }
