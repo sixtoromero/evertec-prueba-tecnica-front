@@ -21,6 +21,7 @@ export class DetalleComponent implements OnDestroy {
 
   infoPersonal: ClientesModel[] = [];
   ref!: DynamicDialogRef;
+  displayBasic!: boolean;
 
   infoPerson!: ClientesModel;
 
@@ -36,9 +37,7 @@ export class DetalleComponent implements OnDestroy {
   }
 
   ngOnDestroy() {
-    if (this.ref) {
-        this.ref.close();
-    }
+    
   }
 
   getInfoPersonaById(Id: number){
@@ -48,8 +47,9 @@ export class DetalleComponent implements OnDestroy {
     .subscribe(response => {
       console.log('Respuesta', response);
       if (response["IsSuccess"]) {
-        this.infoPerson = response["Data"] as ClientesModel;
-        
+        this.infoPerson = response["Data"] as ClientesModel;  
+        console.log('Info Perosnal Modal', this.infoPerson);
+        this.displayBasic = true;
       }
     }, error => {
       this.ngxService.stop()
@@ -65,7 +65,7 @@ export class DetalleComponent implements OnDestroy {
       console.log('Respuesta', response);
       if (response["IsSuccess"]) {
         this.infoPersonal = response["Data"] as ClientesModel[];
-        console.log('Info Perosnal', this.infoPersonal);
+        console.log('Info Perosnal', this.infoPersonal);        
       }
     }, error => {
       this.ngxService.stop()
@@ -75,7 +75,7 @@ export class DetalleComponent implements OnDestroy {
 
   onRowEditInit(Id: number){
     //this.router.navigate(['/info-persona', Id]);
-
+    this.getInfoPersonaById(Id);
   }
   
 
@@ -98,7 +98,11 @@ export class DetalleComponent implements OnDestroy {
           this.general.showError('Ha ocurrido un error inesperado.');          
         });
       }
-  });
+    });
+  }
+
+  getFile(event: any){
+    
   }
 
 }

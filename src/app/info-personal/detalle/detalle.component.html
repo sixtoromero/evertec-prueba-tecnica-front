@@ -41,24 +41,60 @@
     </div>
 </div>
 
-<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-  <div class="modal-dialog" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
+<p-dialog header="Modificar Información Personal" [(visible)]="displayBasic" [style]="{width: '50vw'}">
+  <div class="row">
+    <div class="col-12">
+      <div class="form-group">
+        <label for="txtNombres">Nombres</label>
+        <input type="text" class="form-control" id="txtNombres">
       </div>
-      <div class="modal-body">
-        ...
+    </div>
+    <div class="col-12">
+      <div class="form-group">
+        <label for="txtApellidos">Apellidos</label>        
+        <input type="text" class="form-control" id="txtApellidos">
       </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-primary">Save changes</button>
+    </div>
+    <div class="col-12">
+      <div class="form-group">
+        <label for="txtFoto">Foto</label>        
+        <input (change)="getFile($event)"
+            id="txtFoto"
+            type="file" 
+            accept="image/*"            
+            class="form-control" />
+      </div>
+    </div>    
+    <div class="col-12">
+      <div class="form-group">
+        <label for="txtFecha_Nacimiento">Fecha de Nacimiento</label>        
+        <input type="text" class="form-control" id="txtFecha_Nacimiento">
+        <hr>
+        <img src="" alt="">
+      </div>
+    </div>
+    <div class="col-12">
+      <div class="form-group">
+        <label for="cboEstado_Civil">Estado Civil</label>        
+        <select class="form-control" id="cboEstado_Civil">
+          <option value="false">Soltero</option>
+          <option value="true">Casado</option>          
+        </select>
+      </div>
+    </div>
+    <div class="col-12">
+      <div class="form-group">
+        <label for="cboEstado_Civil">¿Tiene Hermanos?</label>        
+        <select class="form-control" id="cboTiene_Hermanos">
+          <option value="false">No</option>
+          <option value="true">Si</option>
+        </select>
       </div>
     </div>
   </div>
-</div>
+  <ng-template pTemplate="footer">
+      <p-button icon="pi pi-check" (click)="displayBasic=false" label="Ok" styleClass="p-button-text"></p-button>
+  </ng-template>
+</p-dialog>
 
 <p-confirmDialog header="Confirmation" icon="pi pi-exclamation-triangle"></p-confirmDialog>
