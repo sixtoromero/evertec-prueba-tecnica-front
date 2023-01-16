@@ -23,7 +23,7 @@ export class DetalleComponent implements OnDestroy {
   ref!: DynamicDialogRef;
   displayBasic!: boolean;
 
-  infoPerson!: ClientesModel;
+  infoPerson = new ClientesModel();
 
   constructor(    
     private info: InfoPersonalService,

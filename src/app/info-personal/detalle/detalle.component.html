@@ -46,13 +46,13 @@
     <div class="col-12">
       <div class="form-group">
         <label for="txtNombres">Nombres</label>
-        <input type="text" class="form-control" id="txtNombres">
+        <input type="text" class="form-control" id="txtNombres" name="txtNombres" [(ngModel)]="infoPerson.Nombres">
       </div>
     </div>
     <div class="col-12">
       <div class="form-group">
         <label for="txtApellidos">Apellidos</label>        
-        <input type="text" class="form-control" id="txtApellidos">
+        <input type="text" class="form-control" id="txtApellidos" name="txtApellidos" [(ngModel)]="infoPerson.Apellidos">
       </div>
     </div>
     <div class="col-12">
@@ -63,12 +63,19 @@
             type="file" 
             accept="image/*"            
             class="form-control" />
+
+            <!-- <img src="infoPerson.Foto" alt=""> -->
       </div>
     </div>    
     <div class="col-12">
       <div class="form-group">
-        <label for="txtFecha_Nacimiento">Fecha de Nacimiento</label>        
-        <input type="text" class="form-control" id="txtFecha_Nacimiento">
+        <label for="txtFecha_Nacimiento">Fecha de Nacimiento</label>
+        <input 
+          type="text" 
+          class="form-control" 
+          id="txtFecha_Nacimiento" 
+          name="txtFecha_Nacimiento" 
+          [(ngModel)]="infoPerson.Fecha_Nacimiento">
         <hr>
         <img src="" alt="">
       </div>
@@ -76,7 +83,7 @@
     <div class="col-12">
       <div class="form-group">
         <label for="cboEstado_Civil">Estado Civil</label>        
-        <select class="form-control" id="cboEstado_Civil">
+        <select class="form-control" id="cboEstado_Civil" name="cboEstado_Civil" [(ngModel)]="infoPerson.Estado_Civil">
           <option value="false">Soltero</option>
           <option value="true">Casado</option>          
         </select>
@@ -85,7 +92,7 @@
     <div class="col-12">
       <div class="form-group">
         <label for="cboEstado_Civil">¿Tiene Hermanos?</label>        
-        <select class="form-control" id="cboTiene_Hermanos">
+        <select class="form-control" id="cboTiene_Hermanos" name="cboTiene_Hermanos" [(ngModel)]="infoPerson.Tiene_Hermanos">
           <option value="false">No</option>
           <option value="true">Si</option>
         </select>
