@@ -22,8 +22,10 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 // Ngrx
 import { StoreModule } from '@ngrx/store';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
-import { appReducers } from './app.reducer';
 import { environment } from '../environments/environment.prod';
+import { appReducers } from './store/app.reducers';
+import { EffectsModule } from '@ngrx/effects';
+import { EffectsArray } from './store/effects';
 
 
 @NgModule({
@@ -47,6 +49,7 @@ import { environment } from '../environments/environment.prod';
     //ToastModule,
     BrowserAnimationsModule,
     StoreModule.forRoot(appReducers),
+    EffectsModule.forRoot(EffectsArray),
     StoreDevtoolsModule.instrument({
       maxAge: 25,
       logOnly: environment.production,

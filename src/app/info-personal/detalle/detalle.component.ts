@@ -9,6 +9,9 @@ import { InfoPersonalService } from 'src/app/services/info-personal.service';
 import { Router } from '@angular/router';
 import { DialogService, DynamicDialogRef } from 'primeng/dynamicdialog';
 import * as moment from 'moment';
+import { Store } from '@ngrx/store';
+import { AppState } from 'src/app/store/app.reducers';
+import { getInfoPersonas } from '../../store/actions/infoPersonas.actions';
 
 @Component({
   selector: 'app-detalle',
@@ -16,7 +19,7 @@ import * as moment from 'moment';
   styleUrls: ['./detalle.component.scss'],
   providers: [GeneralService, MessageService, ConfirmationService, DialogService]
 })
-export class DetalleComponent implements OnDestroy {
+export class DetalleComponent implements OnInit, OnDestroy {
 
   infoPersonal: ClientesModel[] = [];
   ref!: DynamicDialogRef;
@@ -34,9 +37,19 @@ export class DetalleComponent implements OnDestroy {
     private general: GeneralService,    
     private confirmationService: ConfirmationService,
     private dialogService: DialogService,
-    private router: Router
+    private router: Router,
+    private store: Store<AppState>
   ){
-    this.getAllInfoPersonal();
+    //this.getAllInfoPersonal();
+  }
+
+  ngOnInit(): void {
+
+    this.store.select('personas').subscribe(({personas}) => {
+      this.infoPersonal = personas.Data;
+    });
+
+    this.store.dispatch(getInfoPersonas());
   }
 
   ngOnDestroy() {
@@ -63,7 +76,7 @@ export class DetalleComponent implements OnDestroy {
     });
   }  
 
-  getAllInfoPersonal() {
+  getAllInfoPersonal() {  
     this.ngxService.start();
     this.info.getAll()
     .pipe(finalize(() => this.ngxService.stop()))
@@ -77,6 +90,7 @@ export class DetalleComponent implements OnDestroy {
       this.ngxService.stop()
       this.general.showError('Ha ocurrido un error inesperado.');
     });
+    
   }
 
   onRowEditInit(Id: number){
