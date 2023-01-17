@@ -19,7 +19,7 @@ import { getInfoPersonas } from '../../store/actions/infoPersonas.actions';
   styleUrls: ['./detalle.component.scss'],
   providers: [GeneralService, MessageService, ConfirmationService, DialogService]
 })
-export class DetalleComponent implements OnInit, OnDestroy {
+export class DetalleComponent implements OnInit {
 
   infoPersonal: ClientesModel[] = [];
   ref!: DynamicDialogRef;
@@ -28,6 +28,8 @@ export class DetalleComponent implements OnInit, OnDestroy {
   imageData: string = '';
   nameImage: string = '';
   sizeImage: string = ''; 
+  loading: boolean = false;
+  error: any;
 
   infoPerson = new ClientesModel();
 
@@ -44,16 +46,20 @@ export class DetalleComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit(): void {
+    this.getInfoTodos();
+  }
 
-    this.store.select('personas').subscribe(({personas}) => {
+  getInfoTodos() {
+        
+    this.ngxService.start();
+    this.store.select('personas').subscribe(({personas, loading, error}) => {
       this.infoPersonal = personas.Data;
+      this.loading = loading;
+      this.error = error;      
+      this.ngxService.stop();
     });
 
     this.store.dispatch(getInfoPersonas());
-  }
-
-  ngOnDestroy() {
-    
   }
 
   getInfoPersonaById(Id: number){
@@ -67,7 +73,7 @@ export class DetalleComponent implements OnInit, OnDestroy {
         this.infoPerson.Fecha_Nacimiento_formato = moment(this.infoPerson.Fecha_Nacimiento).format('MM-DD-YYYY');
         this.imageData = this.infoPerson.Foto;
 
-        console.log('Info Perosnal Modal', this.infoPerson);
+        console.log('Info Perosnal Modal', this.infoPerson);        
         this.displayBasic = true;
       }
     }, error => {
@@ -151,6 +157,8 @@ export class DetalleComponent implements OnInit, OnDestroy {
         if (response["IsSuccess"]){                
           //Cargar registros guardados
           
+          this.getInfoTodos();
+
           this.general.showSuccess('registrado exitosamente');          
           this.imageData = '';
           this.files = [];

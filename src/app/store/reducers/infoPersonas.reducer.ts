@@ -7,12 +7,14 @@ import { getInfoPersonas, getInfoPersonasError, getInfoPersonasSuccess } from '.
 export interface InfoPersonasState {
     personas : ResponseModel<ClientesModel[]>,
     loaded  : boolean,
+    loading: boolean,
     error   : any
 }
 
 export const PersonsinitialState: InfoPersonasState = {
     personas : {IsSuccess: false, Data: [], Message: ''},
     loaded  : false,
+    loading: false,
     error   : false
 }
 

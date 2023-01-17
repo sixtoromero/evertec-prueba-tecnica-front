@@ -39,13 +39,6 @@ export class InfoPersonalService {
     return this._http.get<ResponseModel<ClientesModel>>(`${this.endPoint}/GetAsync?ID=${Id}`);
   }
 
-  getAllSimple(){
-    return this._http.get(`${this.endPoint}/GetAllAsync`)
-      .pipe(
-        map(resp => resp)
-      );
-  }
-
   getAll(): Observable<ResponseModel<ClientesModel[]>> {
     return this._http.get<ResponseModel<ClientesModel[]>>(`${this.endPoint}/GetAllAsync` );
   }

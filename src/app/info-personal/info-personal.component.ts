@@ -19,8 +19,7 @@ import { ActivatedRoute, Route, TitleStrategy } from '@angular/router';
   providers: [GeneralService, MessageService, ConfirmationService]
 })
 export class InfoPersonalComponent {
-  
-    
+      
   infoPersonForm: FormGroup  = new FormGroup({});
   
   files: any = [];
@@ -67,12 +66,6 @@ export class InfoPersonalComponent {
       Estado_Civil: ['', Validators.required],
       Tiene_Hermanos: ['', Validators.required]
     });
-
-    // this.Id = this.route.snapshot.params['id'];
-    // if (this.Id != undefined){
-    //   this.getInfoPersonaById();
-    // }
-
   }  
 
   
