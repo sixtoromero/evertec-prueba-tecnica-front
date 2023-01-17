@@ -4,12 +4,10 @@ import { NgxUiLoaderService } from 'ngx-ui-loader';
 import { finalize } from 'rxjs/operators';
 import { GeneralService } from 'src/app/services/general.service';
 import { ConfirmationService, MessageService } from 'primeng/api';
-import { DomSanitizer } from '@angular/platform-browser';
 import { ClientesModel } from 'src/app/models/clientes.model';
 import { InfoPersonalService } from 'src/app/services/info-personal.service';
 import { Router } from '@angular/router';
 import { DialogService, DynamicDialogRef } from 'primeng/dynamicdialog';
-import { ModInfoPersonComponent } from '../mod-info-person/mod-info-person.component';
 import * as moment from 'moment';
 
 @Component({

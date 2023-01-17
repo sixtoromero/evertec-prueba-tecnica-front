@@ -6,11 +6,8 @@ import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { SharedModule } from './shared/shared.module';
-import { LoginComponent } from './auth/login/login.component';
-import { RegisterComponent } from './auth/register/register.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { InfoPersonalComponent } from './info-personal/info-personal.component';
-import { EstadisticaComponent } from './info-personal/estadistica/estadistica.component';
 import { DetalleComponent } from './info-personal/detalle/detalle.component';
 import { FooterComponent } from './shared/footer/footer.component';
 import { NavbarComponent } from './shared/navbar/navbar.component';
@@ -19,23 +16,25 @@ import { NgxUiLoaderModule } from 'ngx-ui-loader';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 //import { MessageService } from 'primeng/api';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { ModInfoPersonComponent } from './info-personal/mod-info-person/mod-info-person.component';
 
 //import {ToastModule} from 'primeng/toast';
 
+// Ngrx
+import { StoreModule } from '@ngrx/store';
+import { StoreDevtoolsModule } from '@ngrx/store-devtools';
+import { appReducers } from './app.reducer';
+import { environment } from '../environments/environment.prod';
+
+
 @NgModule({
   declarations: [
-    AppComponent,
-    LoginComponent,
-    RegisterComponent,
+    AppComponent,    
     DashboardComponent,
-    InfoPersonalComponent,
-    EstadisticaComponent,
+    InfoPersonalComponent,    
     DetalleComponent,
     FooterComponent,
     NavbarComponent,
-    SidebarComponent,
-    ModInfoPersonComponent
+    SidebarComponent
   ],
   imports: [
     BrowserModule,
@@ -46,7 +45,12 @@ import { ModInfoPersonComponent } from './info-personal/mod-info-person/mod-info
     NgxUiLoaderModule,
     HttpClientModule,
     //ToastModule,
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
+    StoreModule.forRoot(appReducers),
+    StoreDevtoolsModule.instrument({
+      maxAge: 25,
+      logOnly: environment.production,
+    }),
   ],
   providers: [],
   bootstrap: [AppComponent]

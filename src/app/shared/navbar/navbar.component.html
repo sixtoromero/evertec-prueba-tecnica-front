@@ -10,8 +10,14 @@
     </a>
   </div>  
   <div class="navbar-menu-wrapper d-flex align-items-center">   
-    <p-menubar [model]="items"></p-menubar>
+    <p-menubar [model]="items" ></p-menubar>
+    <!-- <p-menubar [model]="items" >
+      <ng-template pTemplate="end">
+        <button (click)="cerrarSesion()" pButton pRipple type="button" icon="pi pi-fw pi-power-off" class="p-button-rounded p-button-secondary p-button-text">&nbsp;Salir</button>
+      </ng-template>
+    </p-menubar>         -->
   </div>
 </nav>
 <!-- partial -->
 
+<p-confirmDialog header="Confirmation" icon="pi pi-exclamation-triangle"></p-confirmDialog>
